@@ -1,0 +1,28 @@
+{
+  "deno.enable": true,
+  "deno.codeLens.implementations": true,
+  "deno.codeLens.references": true,
+  "deno.codeLens.referencesAllFunctions": true,
+  "deno.config": "./app/deno.json",
+  "deno.importMap": "./app/import_map.json",
+  "deno.lint": true,
+  "deno.suggest.completeFunctionCalls": true,
+  "deno.suggest.imports.autoDiscover": true,
+  "deno.suggest.imports.hosts": {
+    "https://cdn.skypack.dev/": true,
+    "https://deno.land/": true,
+    "https://nest.land/": true,
+    "https://esm.sh/": true,
+    "https://jsdelivr.net/": true,
+    "https://jspm.dev/": true,
+    "https://unpkg.com/": true
+  },
+  "deno.unstable": true,
+  "editor.defaultFormatter": "denoland.vscode-deno",
+  "editor.insertSpaces": true,
+  "editor.detectIndentation":true,
+  "typescript.validate.enable": false,
+  "[typescript]": {
+    "editor.tabSize": 2
+  }
+}

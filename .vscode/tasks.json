@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "install deno",
+            "windows": {
+                "command": "iwr https://deno.land/x/install/install.ps1 -useb | iex"
+            },
+            "linux": {
+                "command": "url -fsSL https://deno.land/x/install/install.sh | sh && export DENO_INSTALL='~/.deno' && export PATH='$DENO_INSTALL/bin:$PATH'"
+            },
+            "type": "shell",
+            "group": "build",
+        },
+        {
+            "label": "start",
+            "command": "deno run -A --import-map=import_map.json --config deno.json server.ts",
+            "options": {"cwd": "./app"},
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "dev",
+            "command": "deno run --watch -A --import-map=import_map.json --config deno.json server.ts",
+            "options": {"cwd": "./app"},
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "cache",
+            "command": "deno run -A cache.ts",
+            "type": "shell",
+            "group": "build"
+        }
+    ]
+}

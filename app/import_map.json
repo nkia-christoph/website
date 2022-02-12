@@ -1,0 +1,10 @@
+{
+    "imports": {
+        "std/"        : "https://deno.land/std@0.125.0/",
+        "nano"        : "https://deno.land/x/nano_jsx@v0.0.29/mod.ts",
+        "nano/"       : "https://deno.land/x/nano_jsx@v0.0.29/",
+        "core"        : "https://deno.land/x/nano_jsx@v0.0.29/core.ts",
+        "pathToRegexp": "https://deno.land/x/path_to_regexp@v6.2.0/index.ts",
+        "marked"      : "https://cdn.skypack.dev/pin/marked@v4.0.12-9oJB2dtvFoyURX14n4tP/mode=imports,min/optimized/marked.js"
+    }
+}
