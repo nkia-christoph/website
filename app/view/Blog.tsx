@@ -1,21 +1,30 @@
 import { h, Fragment, FC, Helmet, Router } from "nano"
+import { SocialHelmet, ISocial } from "../components/SocialHelmet.tsx"
 import { Navigation } from "../components/Navigation.tsx"
 import { Article } from "../components/Article.tsx"
 
 
-const Blog: FC = (article: any) => {
+const Blog: FC = (route: any) => {
+  const defaultSocial: ISocial = {
+    author:      "",
+    discription: "",
+    image:       "",
+    keywords:    "",
+    lang:        "en",
+    title:       "",
+    type:        "website"
+  }
+
   return <>
-    <div>
-      <Helmet>
-        <html lang="en" amp />
-        <body class="root" />
-        <body class="main" id="id" />
-        <title>Christoph Kröppl</title>
-        <meta name="description" content="Nano JSX Application" />
-      </Helmet>
-      <Navigation />
-      <Article id={ article.id } name={ article.name }/>
-    </div>
+    <Helmet>
+      <html lang={ defaultSocial.lang } amp />
+      <body class="root" />
+      <body class="main" id="id" />
+      <SocialHelmet social={ defaultSocial }/>
+    </Helmet>
+    <Navigation />
+    { route.id &&
+      <Article id={ route.id } name={ route.name }/>}
   </>
 }
 

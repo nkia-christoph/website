@@ -16,6 +16,7 @@ export function renderPage(fc: FC, props?: object): string {
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="twitter:card" content="summary_large_image"></meta>
       ${head.join('\n')}
     </head>
     <body ${attributes.body.toString()}>

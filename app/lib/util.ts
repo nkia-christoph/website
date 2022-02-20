@@ -55,3 +55,16 @@ export function localizeData<T>( lang:string, data: T): T {
   })
 }
 */
+
+/**
+ * load cached json to render page at requested route
+ * 
+ * @param route page route 
+ * @returns json loaded from cache
+ */
+export function loadPage<T>(route: Record<string, any>): T|null {
+  const page: T|null = JSON.parse( Deno.readTextFileSync(
+    `./cache/pages/${route.name}/${route.id}.json`
+  )) || null
+  return page
+}
