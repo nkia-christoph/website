@@ -1,6 +1,9 @@
 {
     "recommendations": [
         "denoland.vscode-deno",
-        "ms-azuretools.vscode-docker"
+        "ms-azuretools.vscode-docker",
+        "formulahendry.auto-rename-tag",
+        "steoates.autoimport",
+        "wix.vscode-import-cost"
     ]
 }

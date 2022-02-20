@@ -28,7 +28,7 @@
         },
         {
             "label": "cache",
-            "command": "deno run -A cache.ts",
+            "command": "deno run -A --import-map=./app/import_map.json cache.ts",
             "type": "shell",
             "group": "build"
         }

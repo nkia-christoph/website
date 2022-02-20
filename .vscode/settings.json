@@ -21,8 +21,6 @@
   "editor.defaultFormatter": "denoland.vscode-deno",
   "editor.insertSpaces": true,
   "editor.detectIndentation":true,
-  "typescript.validate.enable": false,
-  "[typescript]": {
-    "editor.tabSize": 2
-  }
+  "editor.tabSize": 2,
+  "typescript.validate.enable": false
 }
