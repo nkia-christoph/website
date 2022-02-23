@@ -34,7 +34,7 @@ export const Article = (props: IArticleProps): FC => {
     <Helmet><SocialHelmet social={ defaultSocial }/></Helmet>
     <main>
       <article itemscope itemtype="https://schema.org/Article/TechArticle">
-        <div class="tags">tags <span itemprop="keywords">{ pageData.seo }</span></div>
+        <div class="tags">tags { pageData.seo }<span itemprop="keywords">{ pageData.seo }</span></div>
         <h1 itemprop="name headline">{ pageData.name }</h1>
         <div class="author">by <span itemprop="author">{ "" }</span></div>
         <div class="date-created">publisehd: <span itemprop="dateCreated">{ "" }</span></div>
@@ -43,7 +43,7 @@ export const Article = (props: IArticleProps): FC => {
         <div class="seo-only" itemprop="datePublished">{ "" }</div>
         <div class="seo-only" itemprop="inLanguage">{ "" }</div>
         <div class="seo-only" itemprop="wordcount">{ wordCount }</div>
-        <div class="time-required">time required: <span itemprop="timeRequired">{ timeReq }</span></div>
+        <div class="time-required">time required: <span itemprop="timeRequired">{ timeReq + " minutes" }</span></div>
         <div class="article" itemprop="text" innerHTML={{ __dangerousHtml: `${html}` }} />
       </article>
     </main>

@@ -21,7 +21,7 @@ const Home: FC = () => {
       <html lang={ defaultSocial.lang } amp />
       <body class="root" />
       <body class="main" id="id" />
-    <SocialHelmet social={ defaultSocial }/>
+      <SocialHelmet social={ defaultSocial }/>
     </Helmet>
     <Navigation />
     <main>

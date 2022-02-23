@@ -25,17 +25,17 @@ const Resume: FC = () => {
     <main itemscope itemtype="http://schema.org/tech">
       <section id="resume" itemscope itemtype="https://schema.org/Person">
         <img src="" itemprop="image" alt="Photo of Christoph"/>
-        <span itemprop="name">""</span>
-        <span itemprop="jobTitle discription">Software Consultant U+0026 Developer</span>
-        <span itemprop="gender">Male</span>
-        {/*<span itemprop="owns brand affiliation">NKIA LLC</span>*/}
-        <span itemprop="alumniOf">""</span>
-        <span itemprop="birthDate">""</span>
-        <span itemprop="birthPlace">""</span>
-        <span itemprop="nationality">""</span>
-        <span itemprop="telephone">""</span>
-        <span itemprop="email">""</span>
-        <span itemprop="url">""</span>
+        <div itemprop="name">""</div>
+        <div itemprop="jobTitle discription">Software Consultant &amp; Developer</div>
+        <div class="seo-only" classitemprop="gender">Male</div>
+        {/*<div itemprop="owns brand affiliation">NKIA LLC</div>*/}
+        <div itemprop="alumniOf">""</div>
+        <div itemprop="birthDate">""</div>
+        <div class="seo-only"itemprop="birthPlace">"seo"</div>
+        <div itemprop="nationality">""</div>
+        <div itemprop="telephone">""</div>
+        <div itemprop="email">""</div>
+        <div class="seo-only" itemprop="url">""</div>
 
       </section>
     </main>
