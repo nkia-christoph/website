@@ -4,7 +4,7 @@ import { Navigation } from "../components/Navigation.tsx"
 import { Article } from "../components/Article.tsx"
 
 
-const Blog: FC = (route: any) => {
+const Blog: FC = ({ slug: id }: any) => {
   const defaultSocial: ISocial = {
     author:      "",
     discription: "",
@@ -23,8 +23,8 @@ const Blog: FC = (route: any) => {
       <SocialHelmet social={ defaultSocial }/>
     </Helmet>
     <Navigation />
-    { route.id &&
-      <Article id={ route.id } name={ route.name }/>}
+    { id &&
+      <Article id={ id } name="blog"/>}
   </>
 }
 

@@ -6,7 +6,7 @@ import handler from "./router.ts"
 
 initSSR()
 
-export function renderPage(fc: FC, props?: object): string {
+export function renderPage(fc: FC, props?: Record<string, unknown>): string {
   const ssr = renderSSR(fc(props || {}))
   const { body, head, footer, attributes } = Helmet.SSR(ssr)
 

@@ -6,14 +6,19 @@ import { SocialHelmet, ISocial } from "../components/SocialHelmet.tsx"
 import { loadPage } from "../lib/util.ts"
 
 
+export interface IArticleProps {
+  id: string
+  name: string
+}
+
 const countWords = (text: string): number => text.split(' ').filter(n => n != '' ).length
 
-export const Article = (route: any): FC => {
+export const Article = (props: IArticleProps): FC => {
 
-  const pageData = loadPage<any>(route)
+  const pageData = loadPage<any>(props)
   const html: string = marked.parse(pageData.content_en)
   const wordCount = countWords(pageData.content_en)
-  const timeReq = wordCount / 238
+  const timeReq = (wordCount / 238).toFixed(2)
 
   const defaultSocial: ISocial = {
     author:      "Christoph Kröppl",

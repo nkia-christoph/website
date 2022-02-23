@@ -1,7 +1,4 @@
-import {
-  IArticle,
-  IVersion
-} from "../interfaces.ts"
+import { IArticleProps } from "../components/Article.tsx"
 
 
 //https://stackoverflow.com/questions/45670705/iterate-over-interface-properties-in-typescript
@@ -62,7 +59,7 @@ export function localizeData<T>( lang:string, data: T): T {
  * @param route page route 
  * @returns json loaded from cache
  */
-export function loadPage<T>(route: Record<string, any>): T|null {
+export function loadPage<T>(route: IArticleProps): T|null {
   const page: T|null = JSON.parse( Deno.readTextFileSync(
     `./dist/cache/pages/${route.name}/${route.id}.json`
   )) || null
