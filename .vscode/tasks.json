@@ -9,18 +9,21 @@
             "linux": {
                 "command": "url -fsSL https://deno.land/x/install/install.sh | sh && export DENO_INSTALL='~/.deno' && export PATH='$DENO_INSTALL/bin:$PATH'"
             },
+            "osx": {
+                "command": "brew install deno"
+            },
             "type": "shell",
             "group": "build",
         },
         {
-            "label": "start",
+            "label": "serve",
             "command": "deno run -A --import-map=import_map.json --config deno.json server.ts",
             "options": {"cwd": "./app"},
             "type": "shell",
             "group": "build"
         },
         {
-            "label": "dev",
+            "label": "serve & watch",
             "command": "deno run --watch -A --import-map=import_map.json --config deno.json server.ts",
             "options": {"cwd": "./app"},
             "type": "shell",
@@ -28,8 +31,29 @@
         },
         {
             "label": "cache",
-            "command": "deno run -A --import-map=./app/import_map.json cache.ts",
+            "command": "deno run -A build.ts --dist-dir=./app/dist --import-map=./app/import_map.json",
             "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "cache & watch",
+            "command": "deno run -A build.ts --dist-dir=./app/dist --import-map=./app/import_map.json --watch",
+            "type": "shell",
+            "group": "build"
+        },
+        {
+            "label": "build",
+            "dependsOn": ["cache", "serve"],
+            "group": "build"
+        },
+        {
+            "label": "build & watch",
+            "dependsOn": ["cache & watch", "serve & watch"],
+            "group": "build"
+        },
+        {
+            "label": "build & serve",
+            "dependsOn": ["cache", "serve"],
             "group": "build"
         }
     ]

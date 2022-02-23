@@ -20,12 +20,11 @@ RUN BUILD_DATE = $(date --iso-8601=minutes)
 #RUN echo "$(BUILD_DATE)" > /app/cache/version
 ENV BUILD_DATE=$BUILD_DATE
 
-# Cache DB
-RUN echo "  cache db"
-RUN deno run -A cache.ts
+RUN echo "  build"
+RUN deno run -A build.ts --dist-dir=./app/dist --import-map=./app/import_map.json
 
 RUN echo "build complete"
 
 
 WORKDIR /app
-CMD ["deno", "run", "--allow-net", "--allow-env", "--import-map=import_map.json", "--config", "tsconfig.json","server.ts"]
+CMD ["deno", "run", "-A", "--import-map=import_map.json", "--config", "tsconfig.json", "server.ts"]

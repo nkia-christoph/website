@@ -2,14 +2,20 @@ import { pathToRegexp } from "pathToRegexp"
 import { handleHome, handleLead, handleResume, handleBlog, handleProjects, handleContact } from "./controller.ts"
 
 
-interface Route {
+interface IPageRoute {
   path: string
   regex: RegExp
-  handler: (req: Request, match: RegExpExecArray) => void
+  handler: (req: Request, match: RegExpExecArray) => Response
+}
+
+export interface IAssetRoute {
+  path: string
+  regex: RegExp
+  type: string
 }
 
 
-const routes = [
+const pageRoutes: IPageRoute[] = [
   { path:""             , handler: handleHome     },
   { path:"/"            , handler: handleHome     },
   { path:"/home"        , handler: handleHome     },
@@ -23,14 +29,34 @@ const routes = [
   { path:"/contact"     , handler: handleContact  }
 ].map(route => Object.assign( route, { regex: pathToRegexp(route.path) }))
 
+const assetRoutes: IAssetRoute[] = [
+  { path:"styles/style.css", regex: /.*\/style.css\/?$/, type: "text/css"               },
+  { path:"favicon.ico"     , regex: null               , type: "image/x-icon"           },
+  { path:"sw.js"           , regex: null               , type: "application/javascript" }
+].map(route => (route.regex === null) 
+  ? Object.assign( route, { regex: pathToRegexp(route.path) })
+  : route
+)
+
+
 
 export default function handler(request: Request): Response {
   const url = new URL(request.url)
-  for (const route of routes) {
-    const matchRoute = route.regex.exec(url.pathname);
+
+  for (const assetRoute of assetRoutes) {
+    const matchRoute = assetRoute.regex.exec(url.pathname)
     if (matchRoute) {
-      console.log(`process request at: ${url.pathname}`)
-      return route.handler(request, matchRoute)
+      console.log(`process asset request at: ${url.pathname}`)
+      const asset = Deno.readTextFileSync("./dist/" + assetRoute.path)
+      return new Response(asset, { headers: { "Content-Type": assetRoute.type } })
+    }
+  }
+
+  for (const pageRoute of pageRoutes) {
+    const matchRoute = pageRoute.regex.exec(url.pathname)
+    if (matchRoute) {
+      console.log(`process page request at: ${url.pathname}`)
+      return pageRoute.handler(request, matchRoute)
     }
   }
 

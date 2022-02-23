@@ -17,6 +17,8 @@ export function renderPage(fc: FC, props?: object): string {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="twitter:card" content="summary_large_image"></meta>
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css">
+      <link rel="stylesheet" type="text/css" href="style.css">
       ${head.join('\n')}
     </head>
     <body ${attributes.body.toString()}>

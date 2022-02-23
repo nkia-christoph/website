@@ -2,7 +2,7 @@ import { h, FC } from "nano"
 import { IVersion } from "../interfaces.ts"
 
 
-const loadVersion = (): IVersion => JSON.parse(Deno.readTextFileSync("./cache/data/version.json"))
+const loadVersion = (): IVersion => JSON.parse(Deno.readTextFileSync("./dist/cache/data/version.json"))
 
 export const Footer: FC = () => {
   const version = loadVersion()

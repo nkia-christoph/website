@@ -64,7 +64,7 @@ export function localizeData<T>( lang:string, data: T): T {
  */
 export function loadPage<T>(route: Record<string, any>): T|null {
   const page: T|null = JSON.parse( Deno.readTextFileSync(
-    `./cache/pages/${route.name}/${route.id}.json`
+    `./dist/cache/pages/${route.name}/${route.id}.json`
   )) || null
   return page
 }
