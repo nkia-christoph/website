@@ -38,9 +38,10 @@ const pageRoutes: IPageRoute[] = [
 ].map(route => Object.assign( route, { regex: pathToRegexp(route.path) }))
 
 const assetRoutes: IAssetRoute[] = [
-  { path:"styles/style.css", regex: /.*\/style.css\/?$/, type: "text/css"               },
-  { path:"favicon.ico"     , regex: null               , type: "image/x-icon"           },
-  { path:"sw.js"           , regex: null               , type: "application/javascript" }
+  { path:"/styles/"    , regex: /.*\/([\w-_]+.css)\/?$/ , type: "text/css"               },
+  { path:"/img/"       , regex: /.*\/([\w-_]+.webp)\/?$/, type: "image/webp"             },
+  { path:"/favicon.ico", regex: null                    , type: "image/x-icon"           },
+  { path:"/sw.js"      , regex: null                    , type: "application/javascript" }
 ].map(route => (route.regex === null) 
   ? Object.assign( route, { regex: pathToRegexp(route.path) })
   : route
@@ -50,20 +51,22 @@ const assetRoutes: IAssetRoute[] = [
 export default function handler(request: Request): Response {
   const url = new URL(request.url)
 
-  for (const assetRoute of assetRoutes) {
-    const matchAsset = assetRoute.regex.exec(url.pathname)
+  for (const { path, regex, type} of assetRoutes) {
+    const matchAsset = regex.exec(url.pathname)
     if (matchAsset) {
       console.log(`process asset request at: ${url.pathname}`)
-      const asset = Deno.readTextFileSync("./dist/" + assetRoute.path)
-      return new Response(asset, { headers: { "Content-Type": assetRoute.type } })
+      console.warn(`match: ${matchAsset[1]}`)
+      console.warn(`path: ${path}`)
+      const asset = Deno.readFileSync(`./dist${path}${matchAsset[1] || matchAsset[0]}`)
+      return new Response(asset, { headers: { "Content-Type": type } })
     }
   }
 
-  for (const pageRoute of pageRoutes) {
-    const matchPage = pageRoute.regex.exec(url.pathname);
+  for (const { regex, controller, app } of pageRoutes) {
+    const matchPage = regex.exec(url.pathname);
     if (matchPage) {
       console.log(`process page request at: ${url.pathname}`)
-      return pageRoute.controller(pageRoute.app, matchPage)
+      return controller(app, matchPage)
     }
   }
 
