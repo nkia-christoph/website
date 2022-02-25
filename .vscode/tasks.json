@@ -37,7 +37,7 @@
         },
         {
             "label": "cache & watch",
-            "command": "deno run -A build.ts --dist-dir=./app/dist --import-map=./app/import_map.json --watch",
+            "command": "deno run -A build.ts --dist-dir=./app/dist --import-map=./app/import_map.json -w",
             "type": "shell",
             "group": "build"
         },
@@ -47,13 +47,8 @@
             "group": "build"
         },
         {
-            "label": "build & watch",
+            "label": "dev",
             "dependsOn": ["cache & watch", "serve & watch"],
-            "group": "build"
-        },
-        {
-            "label": "build & serve",
-            "dependsOn": ["cache", "serve"],
             "group": "build"
         }
     ]
